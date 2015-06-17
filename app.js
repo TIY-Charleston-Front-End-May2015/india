@@ -10,7 +10,7 @@ var page = {
   url: 'http://tiy-fee-rest.herokuapp.com/collections/muffnpuff',
   urlCart: "http://tiy-fee-rest.herokuapp.com/collections/" + $username,
   urlReviews: 'http://tiy-fee-rest.herokuapp.com/collections/reviews',
-
+  urlprofile: 'http://tiy-fee-rest.herokuapp.com/collections/muffnpuffprofile',
 
   init: function() {
     page.initStyling();
@@ -57,10 +57,10 @@ var page = {
       $('#headerRight').on('click', '#logInSubmitButton', function(event) {
       event.preventDefault();
       var $username = $('input[id="logInUsername"]').val()
-      $('#usernameBlock').append($username)
+      $('#usernameBox').append($username)
       $('input[id="logInUsername"]').val('')
       $('#logInForm').hide()
-      $('#usernameBlock').addClass('activePage')
+      $('#usernameBox').addClass('activePage')
       })
 
     $('#catalogPageContent').on('click', '.catalogProductBlock', function(e) {

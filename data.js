@@ -287,9 +287,6 @@ templates.cartItem = [
 
 templates.headerRightBlock = [
   '<div id="headerRightBlock2Inner">',
-    '<div id="usernameBlock">',
-      '<%= username %>',
-    '</div>',
     '<div id="cartBlock">',
       '<div id="cartBlockImage">',
         '<i class="fa fa-shopping-cart"></i>',
