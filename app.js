@@ -225,16 +225,15 @@ var page = {
 
   },
 
-  addOneItemToCart: function() {
-    page.loadTemplate()
-  },
 
-  loadItems: function() {
+  loadProfile: function() {
     $.ajax ({
       url: page.url,
       method: 'GET',
       success: function(data) {
-
+        // if ($username = username:) {
+        //
+        // }
       },
       error: function(err) {
         console.log("error");

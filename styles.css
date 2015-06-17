@@ -179,7 +179,7 @@ header {
   display: none !important; }
 
 /*********************
-CATALOG PAGE
+Login Form
 *********************/
 #loginFormWrapper {
   width: 100%;
@@ -265,6 +265,82 @@ CATALOG PAGE
     width: 73%;
     justify-content: flex-end; }
 
+/*********************
+Profile Page
+*********************/
+#profilePageWrapper {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  font-size: 2vmax;
+  background-color: rgba(0, 0, 0, 0.85);
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center; }
+  #profilePageWrapper #profilePage {
+    position: fixed;
+    top: 20%;
+    left: 21%;
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    height: 60%;
+    width: 58%;
+    background-color: white; }
+  #profilePageWrapper #profileHeaderWrapper {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    background-color: #3A0256;
+    color: white;
+    font-family: cursive; }
+    #profilePageWrapper #profileHeaderWrapper #profileImageBlock {
+      width: 30%;
+      height: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    #profilePageWrapper #profileHeaderWrapper #profileInfoBlock {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap; }
+      #profilePageWrapper #profileHeaderWrapper #profileInfoBlock #profileNameWrapper {
+        width: 90%;
+        height: 50%; }
+      #profilePageWrapper #profileHeaderWrapper #profileInfoBlock #profileEmailWrapper {
+        width: 90%;
+        height: 50%; }
+        #profilePageWrapper #profileHeaderWrapper #profileInfoBlock #profileEmailWrapper #profileEmail {
+          font-size: 1.5vmax; }
+    #profilePageWrapper #profileHeaderWrapper #profileAddressWrapper {
+      width: 30%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap; }
+      #profilePageWrapper #profileHeaderWrapper #profileAddressWrapper #profileAddressHeader {
+        width: 90%;
+        height: 50%; }
+      #profilePageWrapper #profileHeaderWrapper #profileAddressWrapper #profileAddressInfoWrapper {
+        width: 90%;
+        height: 50%; }
+    #profilePageWrapper #profileHeaderWrapper #wishList {
+      height: 70%;
+      width: 100%; }
+
+/*********************
+CATALOG PAGE
+*********************/
 #catalogPage {
   display: none; }
   #catalogPage #catalogPageTitle {

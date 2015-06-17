@@ -264,7 +264,7 @@ header {
 }
 
 /*********************
-CATALOG PAGE
+Login Form
 *********************/
 
 #loginFormWrapper {
@@ -373,9 +373,95 @@ CATALOG PAGE
   }
 }
 
+/*********************
+Profile Page
+*********************/
+#profilePageWrapper {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  font-size: 2vmax;
+  background-color: rgba(0, 0, 0, .85);
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  #profilePage {
+    position: fixed;
+    top: 20%;
+    left: 21%;
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    height: 60%;
+    width: 58%;
+    background-color: white;
+  }
+  #profileHeaderWrapper {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    background-color: $primaryColor;
+    color: white;
+    font-family: cursive;
+    #profileImageBlock {
+      width: 30%;
+      height: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #profileInfoBlock {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      #profileNameWrapper {
+        width: 90%;
+        height: 50%;
+      }
+      #profileEmailWrapper{
+        width: 90%;
+        height: 50%;
+        #profileEmail {
+          font-size: 1.5vmax;
+        }
+      }
+    }
+      #profileAddressWrapper {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
 
+        #profileAddressHeader {
+          width: 90%;
+          height: 50%;
+        }
+        #profileAddressInfoWrapper {
+          width: 90%;
+          height: 50%;
+        }
+      }
+    #wishList {
+      height: 70%;
+      width: 100%;
+    }
+  }
+}
 
-
+/*********************
+CATALOG PAGE
+*********************/
 
 #catalogPage {
   display: none;
