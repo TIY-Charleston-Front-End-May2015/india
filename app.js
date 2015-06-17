@@ -94,6 +94,7 @@ var page = {
           $('#productPagePairingImage').attr('data', el.productTitle);
         }
       });
+      page.refreshReviews();
     });
 
     $('#productPage').on('click', '#productAddToCartButton', function(e) {
@@ -101,7 +102,7 @@ var page = {
       $('#cartPlusOne').fadeIn().removeClass('productAddedStarting').addClass('productAddedAnimate');
       setTimeout(function(){
         $('#cartPlusOne').removeClass('productAddedAnimate').addClass('productAddedStarting');
-      }, 1000);
+      }, 500);
       var newProduct = page.getProductFromProductPage(this);
       console.log(newProduct);
       $.ajax({
@@ -122,6 +123,26 @@ var page = {
      })
     });
 
+    $('#pageWrapper').on('click', '.catalogAddToCartButton', function(e) {
+      e.preventDefault();
+      $('#cartPlusOne').fadeIn().removeClass('productAddedStarting').addClass('productAddedAnimate');
+      setTimeout(function(){
+        $('#cartPlusOne').removeClass('productAddedAnimate').addClass('productAddedStarting');
+      }, 1000);
+      var newProduct = page.getProductFromCatalogAddCart(this);
+      console.log(newProduct);
+      $.ajax({
+        url: page.urlCart,
+        method: 'POST',
+        data: newProduct,
+        success: function (data) {
+          page.refreshCart(data);
+        },
+        error: function (err) {
+          console.log("error ", err);
+        }
+      });
+    });
 
     $('#cartItemsBlock').on('click', '.cartItemDelete', function(e){
       var deleteId = $(this).closest('.cartItem').data('id');
@@ -159,6 +180,15 @@ var page = {
       $('#cartPage').removeClass('activePage');
       $('productPage').removeClass('activePage');
       $('#catalogPage').addClass('activePage');
+    });
+
+    $('#cartClearButton').on('click', function(e){
+      e.preventDefault();
+      var cartItemId;
+      $('.cartItem').each(function(idx,el,arr){
+        cartItemId = $(el).data('id');
+        page.deleteItem(cartItemId);
+      });
     });
 
     $('#productPage').on('submit', '#productReviewsForm', function(e){
@@ -212,18 +242,28 @@ var page = {
     });
   },
 
+  deleteAllItems: function() {
+    $.ajax({
+      url: page.urlCart,
+      method: 'DELETE',
+      success: function (data) {
+        page.refreshCart();
+      }
+    });
+  },
+
   deleteItem: function(deleteId) {
     $.ajax({
       url: page.urlCart + "/" + deleteId,
       method: 'DELETE',
       success: function (data) {
-        console.log('Item deleted');
         page.refreshCart();
       }
     });
   },
 
   refreshCart: function() {
+    console.log('Cart refreshed!');
     $.ajax ({
       url: page.urlCart,
       method: 'GET',
@@ -239,6 +279,26 @@ var page = {
         console.log("error");
       }
     });
+  },
+
+  getProductFromCatalogAddCart: function(product) {
+    var matchedProduct;
+    console.log($(product).closest(".catalogWrapper").find(".catalogProductBlockTitle").text());
+    _.each(products, function(el,idx,arr) {
+      if ($(product).closest(".catalogWrapper").find(".catalogProductBlockTitle").text().trim() === el.productTitle) {
+        matchedProduct = el;
+      }
+    });
+    console.log(matchedProduct);
+    var newProduct = {
+      productTitle: matchedProduct.productTitle,
+      productDescription: matchedProduct.productDescription,
+      productPrice: matchedProduct.productPrice,
+      productImage: matchedProduct.productImage,
+      productThumb: matchedProduct.productThumb,
+      pairing: matchedProduct.pairing
+    }
+    return newProduct;
   },
 
   getProductFromCatalog: function(product) {
@@ -332,6 +392,7 @@ var page = {
             page.loadTemplate('productReview', el, $('#productReviewsBlock'));
           }
         });
+        $('#productReviewsFormUsername').text($username);
       },
       error: function(err) {
         console.log("error");
