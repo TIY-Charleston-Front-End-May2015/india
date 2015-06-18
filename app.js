@@ -10,7 +10,7 @@ var page = {
   url: 'http://tiy-fee-rest.herokuapp.com/collections/muffnpuff',
   urlCart: "http://tiy-fee-rest.herokuapp.com/collections/" + $username,
   urlReviews: 'http://tiy-fee-rest.herokuapp.com/collections/reviews',
-
+  urlProfile: 'http://tiy-fee-rest.herokuapp.com/collections/muffnpuffprofile',
 
   init: function() {
     page.initStyling();
@@ -50,17 +50,41 @@ var page = {
   ///Login Form Submission button////////
   $('#loginFormWrapper').on('click', '#createAcctSubmit', function(e) {
       e.preventDefault();
-      page.acctFormSubmission()
+      page.postProfile()
+
   });
   ///////////////////////////////////////
+
+  $('body').on('click', '#profileButtonWrapper input', function(event) {
+    event.preventDefault();
+    page.loadProfile();
+    $('#profilePageWrapper').addClass('activePage')
+  })
+
+  $('body').on('click', '#productAddWishList', function(event){
+    event.preventDefault();
+    console.log(this);
+    var productData;
+    var titleEquals = $(this).closest('#productPage').find("#productPageTitle h2").text();
+    console.log("titleEquals:", titleEquals);
+    _.each(products, function(el,idx,arr) {
+      if (el.productTitle === titleEquals) {
+        productData = el;
+      }
+    });
+    console.log(productData);
+    page.loadTemplate("wishListItem", productData, $("#wishList"))
+
+  })
 
       $('#headerRight').on('click', '#logInSubmitButton', function(event) {
       event.preventDefault();
       var $username = $('input[id="logInUsername"]').val()
-      $('#usernameBlock').append($username)
+      var loadId =
+      $('#usernameBox').append($username)
       $('input[id="logInUsername"]').val('')
       $('#logInForm').hide()
-      $('#usernameBlock').addClass('activePage')
+      $('#usernameBox').addClass('activePage')
       })
 
     $('#catalogPageContent').on('click', '.catalogProductBlock', function(e) {
@@ -150,6 +174,7 @@ var page = {
       page.deleteItem(deleteId);
     });
 
+
     $('body').on('click','#productContinueShoppingButton', function(e) {
       $('#cartPage').removeClass('activePage');
       $('#productPage').removeClass('activePage');
@@ -191,6 +216,23 @@ var page = {
       });
     });
 
+
+    $('body').on('click', '#catalogMuffinsButton', function(e) {
+      e.preventDefault();
+      $('#cartPage').removeClass('activePage');
+      $('#productPage').removeClass('activePage');
+      $('#catalogPage').removeClass('activePage');
+      $('#categoryMuffinPage').addClass('activePage');
+    });
+    //
+    // createMuffinCatalog: function() {
+    //   _.each(products, function(el, idx, arr) {
+    //     if ('category_id' === "Muffins") {
+    //     page.loadTemplate('categoryMuffins', products[idx], $('#catalogPageContent'));
+    //   }
+    //   });
+    // },
+
     $('#productPage').on('submit', '#productReviewsForm', function(e){
       e.preventDefault();
       if ($('#productReviewsFormComment textarea').val().trim().length > 0) {
@@ -225,16 +267,16 @@ var page = {
 
   },
 
-  addOneItemToCart: function() {
-    page.loadTemplate()
-  },
 
-  loadItems: function() {
+  loadProfile: function(data) {
     $.ajax ({
-      url: page.url,
+      url: page.urlProfile,
       method: 'GET',
+      data: data,
       success: function(data) {
-
+        console.log(data);
+        page.addOneProfileToDOM()
+        console.log(loadedProfile);
       },
       error: function(err) {
         console.log("error");
@@ -338,16 +380,50 @@ var page = {
     return newProduct;
   },
 
-  acctFormSubmission: function() {
-      // var lineValue = $('#loginFormWrapper form input').val();
-      var submissionArr = []
-      $('#loginFormWrapper form input').each(function(idx, el, arr){
-        submissionArr.push($(el).val());
-        $('.textBox').val('')
-      });
-        submissionArr.splice(7, 2)
+  addOneProfileToDOM: function(profile) {
+    page.loadTemplate("profilePage", profile, $('#profilePageWrapper'));
+  },
+
+    postProfile: function(newProfile) {
+
+      var newProfile = {
+        username: $('#username').val(),
+        firstName: $('#firstName').val(),
+        lastName: $('#lastName').val(),
+        email: $('#email').val(),
+        streetAddress: $('#streetAdress').val(),
+        City: $('#city').val(),
+        State: $('#state').val(),
+        Zip: $('#zip').val()
+      }
+
+      $.ajax({
+        url: page.urlProfile,
+        method: 'POST',
+        data: newProfile,
+        success: function(data) {
+          page.addOneProfileToDOM(data);
+          $('#profilePageWrapper').addClass('activePage')
+          $('#profilePage').addClass('activePage')
+          $('#loginFormWrapper').removeClass('activePage')
+
+        },
+        error: function(err) {
+          console.log('Error');
+        }
+      })
+    },
 
 
+
+  deleteProfile: function(deleteId) {
+    $.ajax({
+      url: page.urlCart + "/" + deleteId,
+      method: 'DELETE',
+      success: function (data) {
+
+      }
+    });
   },
 
   calculateCartTotal: function(products) {

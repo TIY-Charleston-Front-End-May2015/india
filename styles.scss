@@ -97,15 +97,17 @@ header {
       }
 
       #headerLeftTitle {
-        width: 75%;
+        width: 80%;
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
+        text-align: center;
 
         h1 {
-          font-size: 3.5rem;
+          font-size: 7vmax;
           font-weight: lighter;
           font-family: $scriptFont;
+          text-align: center;
         }
       }
     }
@@ -193,25 +195,43 @@ header {
       }
     }
 
+
+  #usernameBox {
+        text-align: center;
+        font-family: $serifFont;
+        font-weight: lighter;
+        font-size: 2vmax;
+      #profileButtonWrapper {
+        width: 100%;
+        justify-content: center;
+        input {
+          background-color: white;
+          border: 1px solid $primaryColor;
+          color: $primaryColor;
+          &:hover {
+            background-color: $primaryColor;
+            color: white;
+            border: 1px solid white;
+            transition: all .25s ease;
+
+          }
+        }
+      }
+    }
+
     #headerRightBlock2 {
       height: 100%;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-
       #headerRightBlock2Inner {
         height: 80%;
         width: 60%;
         display: flex;
         align-items: center;
-
-        #usernameBlock {
-          height: 35%;
-          display: flex;
-          justify-content: center;
-          align-items: flex-end;
-        }
+        flex-wrap: wrap;
+      }
 
         #cartBlock {
           cursor: pointer;
@@ -257,14 +277,13 @@ header {
       }
     }
   }
-}
 
 .inactiveHeaderRightBlock {
   display: none !important;
 }
 
 /*********************
-CATALOG PAGE
+Login Form
 *********************/
 
 #loginFormWrapper {
@@ -373,9 +392,119 @@ CATALOG PAGE
   }
 }
 
+/*********************
+Profile Page
+*********************/
+#profilePageWrapper {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  font-size: 2vmax;
+  background-color: rgba(0, 0, 0, .85);
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: $sansFont;
+  font-weight: lighter;
+  h3{
+    font-weight: 400;
+  }
+  #profilePage {
+    position: fixed;
+    top: 20%;
+    left: 21%;
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    height: 60%;
+    width: 58%;
+    background-color: white;
+  }
+  #profileHeaderWrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    background-color: $primaryColor;
+    color: white;
+    padding: 1%;
+    #profileImageBlock {
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      #profileImage {
+        height: auto;
+        width: auto;
+        object-fit: contain;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: auto;
+          height: auto;
+          border-radius: 100%;
+        }
+      }
+    }
+    #profileInfoBlock {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      #profileNameWrapper {
+        width: 90%;
+        height: 50%;
+      }
+      #profileEmailWrapper{
+        width: 90%;
+        height: 50%;
+        #profileEmail {
+          font-size: 1.5vmax;
+        }
+      }
+    }
+      #profileAddressWrapper {
+        width: 30%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
 
+        #profileAddressHeader {
+          width: 90%;
+          height: 50%;
+        }
+        #profileAddressInfoWrapper {
+          width: 90%;
+          height: 50%;
+        }
+      }
+    }
+    #wishListWrapper {
+      height: 70%;
+      width: 100%;
+      #wishListHeader {
+        font-family: $serifFont;
+        color: $primaryColor;
+        text-align: left;
+        border-bottom: 1px solid $primaryColor;
+      }
+    }
+}
 
-
+/*********************
+CATALOG PAGE
+*********************/
 
 #catalogPage {
   display: none;
@@ -551,6 +680,7 @@ PRODUCT PAGE
         }
       }
     }
+    
 
     #productPageRight {
       width: 50%;

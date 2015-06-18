@@ -10,14 +10,23 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+
 <div id="loginFormWrapper" style="display: none;">
   <form action="">
+    <label for="username">
+      <div id="labelText">
+      Username:
+      </div>
+      <div id="loginFormInputWrapper">
+        <input id="username" class="textBox" type="text" placeholder="Username">
+      </div>
+    </label>
     <label for="firstName">
       <div id="labelText">
       First Name:
       </div>
       <div id="loginFormInputWrapper">
-        <input class="textBox" type="text" placeholder="First Name">
+        <input id="firstName" class="textBox" type="text" placeholder="First Name">
       </div>
     </label>
     <label for="lastName">
@@ -25,7 +34,7 @@
       Last Name:
     </div>
     <div id="loginFormInputWrapper">
-      <input class="textBox" type="text" placeholder="Last Name">
+      <input id="lastName" class="textBox" type="text" placeholder="Last Name">
     </div>
   </label>
   <label for="Email">
@@ -33,7 +42,7 @@
       Email:
     </div>
     <div id="loginFormInputWrapper">
-      <input class="textBox" type="text" placeholder="Email Address">
+      <input id="email" class="textBox" type="text" placeholder="Email Address">
     </div>
   </label>
   <label for="streetAddress">
@@ -41,7 +50,7 @@
       Street Address:
     </div>
     <div id="loginFormInputWrapper">
-      <input class="textBox" type="text" placeholder="Street Address">
+      <input id="streetAddress" class="textBox" type="text" placeholder="Street Address">
     </div>
   </label>
   <label for="city">
@@ -49,7 +58,7 @@
       City:
     </div>
     <div id="loginFormInputWrapper">
-      <input class="textBox" type="text" placeholder="City">
+      <input id="city" class="textBox" type="text" placeholder="City">
     </div>
   </label>
   <label for="state">
@@ -57,7 +66,7 @@
       State:
     </div>
     <div id="loginFormInputWrapper">
-      <input class="textBox" type="text" placeholder="State">
+      <input id="state" class="textBox" type="text" placeholder="State">
     </div>
   </label>
   <label for="zip">
@@ -65,16 +74,20 @@
       Zip:
     </div>
     <div id="loginFormInputWrapper">
-      <input class="textBox" type="text" placeholder="Zip">
+      <input id="zip" class="textBox" type="text" placeholder="Zip">
     </div>
   </label>
     <label id="createAcctSubmitWrapper">
       <input id="createAcctSubmit" type="submit" name="submit" value="Create Account">
     </label>
     <label id="createAcctCancelWrapper">
-      <input id="createAcctCancel" type="button" name="submit" value="Cancel">
+      <input id="createAcctCancel" type="button" name="submit" value="Cancel"> </button>
     </label>
   </form>
+  <!-- CREATE ACCOUNT FORM GOES HERE -->
+
+</div>
+<div id="profilePageWrapper" style="display: none;" >
 </div>
 <div id="pageWrapper">
   <header>
@@ -102,9 +115,13 @@
               <input type="submit" id="createAcctBtn" value="Create Account">
             </div>
           </form>
-          <div id="usernameBlock" class="hidePage">
+          <div id="usernameBox" style="display: none;">
+            <div id="profileButtonWrapper">
+              <input type="button" name="name" value="Profile">
+            </div>
             Logged in:
           </div>
+
       </div>
       <div id="headerRightBlock2">
         <div id="headerRightBlock2Inner">
@@ -123,14 +140,22 @@
   <div id="catalogPage" class="activePage">
     <div id="catalogPageTitle">
       <h2>Catalog</h2>
+        <div class="catalogCategoriesProduct">
+          <button class="catalogMuffinsButton">Muffins</button>
+          <button class="catalogCigarsButton">Cigars</button>
+        </div>
     </div>
     <div id="catalogPageContent">
+
+    </div>
+    <div id="categoryMuffinPage" class="activePage">
+      <!-- Muffin PAGE GOES HERE -->
 
     </div>
   </div>
   <div id="productPage">
     <!-- PRODUCT PAGE GOES HERE -->
-  
+
   </div>
   <div id="cartPage">
     <div id="cartPageTitle">
