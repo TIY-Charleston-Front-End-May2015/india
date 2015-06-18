@@ -10,7 +10,7 @@ var page = {
   url: 'http://tiy-fee-rest.herokuapp.com/collections/muffnpuff',
   urlCart: "http://tiy-fee-rest.herokuapp.com/collections/" + $username,
   urlReviews: 'http://tiy-fee-rest.herokuapp.com/collections/reviews',
-  urlprofile: 'http://tiy-fee-rest.herokuapp.com/collections/muffnpuffprofile',
+  urlProfile: 'http://tiy-fee-rest.herokuapp.com/collections/muffnpuffprofile',
 
   init: function() {
     page.initStyling();
@@ -50,7 +50,8 @@ var page = {
   ///Login Form Submission button////////
   $('#loginFormWrapper').on('click', '#createAcctSubmit', function(e) {
       e.preventDefault();
-      page.acctFormSubmission()
+      page.postProfile()
+
   });
   ///////////////////////////////////////
 
@@ -337,16 +338,58 @@ var page = {
     return newProduct;
   },
 
-  acctFormSubmission: function() {
+  addOneProfileToDOM: function(profile) {
+    page.loadTemplate("profilePage", profile, $('#profilePageWrapper'));
+  },
+
+  // acctFormSubmission: function() {
       // var lineValue = $('#loginFormWrapper form input').val();
-      var submissionArr = []
-      $('#loginFormWrapper form input').each(function(idx, el, arr){
-        submissionArr.push($(el).val());
-        $('.textBox').val('')
-      });
-        submissionArr.splice(7, 2)
+      // var submissionArr = []
+      // $('#loginFormWrapper form input').each(function(idx, el, arr){
+      //   submissionArr.push($(el).val());
+      //   $('.textBox').val('')
+      //   submissionArr.splice(7, 2);
 
 
+    postProfile: function(newProfile) {
+
+      var newProfile = {
+        firstName: $('#firstName').val(),
+        lastName: $('#lastName').val(),
+        email: $('#email').val(),
+        streetAddress: $('#streetAdress').val(),
+        City: $('#city').val(),
+        State: $('#state').val(),
+        Zip: $('#zip').val()
+      }
+
+      $.ajax({
+        url: page.urlProfile,
+        method: 'POST',
+        data: newProfile,
+        success: function(data) {  
+          page.addOneProfileToDOM(data);
+          $('#profilePageWrapper').addClass('activePage')
+          $('#profilePage').addClass('activePage')
+          $('#loginFormWrapper').removeClass('activePage')
+
+        },
+        error: function(err) {
+          console.log('Error');
+        }
+      })
+    },
+
+
+
+  deleteItem: function(deleteId) {
+    $.ajax({
+      url: page.urlCart + "/" + deleteId,
+      method: 'DELETE',
+      success: function (data) {
+
+      }
+    });
   },
 
   calculateCartTotal: function(products) {

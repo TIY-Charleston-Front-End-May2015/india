@@ -201,6 +201,27 @@ templates.catalogBlock = [
   '</div>'
 ].join("");
 
+templates.wishListItem = [
+  '<div class="catalogWrapper">',
+  '<div class="catalogProductBlock">',
+  '<div class="catalogProductBlockImage">',
+  '<%= productThumb %>',
+  '</div>',
+  '<div class="catalogProductBlockInfo">',
+  '<div class="catalogProductBlockTitle">',
+  '<%= productTitle %>',
+  '</div>',
+  '<div class="catalogProductBlockPrice">',
+  '$<%= productPrice %>',
+  '</div>',
+  '</div>',
+  '</div>',
+  '<div class="catalogProductAddToCartBlock">',
+  '<button class="catalogAddToCartButton">Delete</button>',
+  '</div>',
+  '</div>'
+].join("");
+
 templates.productPage = [
   '<div id="productPageTitle">',
     '<h2><%= productTitle %></h2>',
@@ -312,4 +333,43 @@ templates.productReview = [
       '</div>',
     '</div>',
   '</div>'
+].join("");
+
+
+templates.profilePage = [
+    '<div id="profilePage" data-id="_id">',
+      '<div id="profileHeaderWrapper">',
+        '<div id="profileImageBlock">',
+          '<div id="profileImage">',
+            '<img src="http://placehold.it/200x200">',
+          '</div>',
+        '</div>',
+        '<div id="profileInfoBlock">',
+          '<div id="profileNameWrapper">',
+            '<h3 id="profileName"><%=firstName + lastName%></h3>',
+          '</div>',
+          '<div id="profileEmailWrapper">',
+            '<h3 id="profileEmail"> <a href="#"> <%=email%> </a> </h3>',
+          '</div>',
+        '</div>',
+        '<div id="profileAddressWrapper">',
+          '<div id="profileAddressHeader">',
+            '<h3>Address:</h3>',
+          '</div>',
+          '<div id="profileAddressInfoWrapper">',
+            '<div id="profileAddressInfo">',
+              '<%=streetAddress%><%=city%><%=state%><%=zip%>',
+            '</div>',
+          '</div>',
+        '</div>',
+      '</div>',
+      '<div id="wishListWrapper">',
+        '<h3 id="wishListHeader">',
+          'Wish List',
+        '</h3>',
+        '<div id="wishList">',
+
+        '</div>',
+      '</div>',
+    '</div>'
 ].join("");
