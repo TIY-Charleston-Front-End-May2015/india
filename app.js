@@ -55,7 +55,7 @@ var page = {
   });
   ///////////////////////////////////////
 
-  $('body').on('click', '#profileButtonWrapper input', function(event) {
+  $('body').on('click', '#productAddToWishListButton', function(event) {
     event.preventDefault();
     page.loadProfile();
     $('#profilePageWrapper').addClass('activePage')

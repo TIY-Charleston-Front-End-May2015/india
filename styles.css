@@ -376,6 +376,25 @@ Profile Page
 /*********************
 CATALOG PAGE
 *********************/
+.catalogCategoriesProduct {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  width: 50%;
+  margin: none; }
+
+.catalogMuffinsButton, .catalogCigarsButton {
+  width: auto;
+  color: #3A0256;
+  background-color: white;
+  border-color: #3A0256;
+  padding: 18px;
+  font-weight: lighter;
+  transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  font-size: 1em;
+  margin-left: 5px; }
+
 #catalogPage {
   display: none; }
   #catalogPage #catalogPageTitle {
@@ -384,7 +403,10 @@ CATALOG PAGE
     #catalogPage #catalogPageTitle h2 {
       font-size: 2.5rem;
       font-weight: lighter;
-      color: #3A0256; }
+      color: #3A0256;
+      width: 50%;
+      margin: none;
+      float: left; }
   #catalogPage #catalogPageContent {
     padding: 25px 0;
     display: flex;
