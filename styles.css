@@ -66,14 +66,16 @@ header {
           width: 125px;
           height: 125px; }
       header #headerLeft #headerLeftBlock #headerLeftTitle {
-        width: 75%;
+        width: 80%;
         display: flex;
-        justify-content: flex-start;
-        align-items: center; }
+        justify-content: center;
+        align-items: center;
+        text-align: center; }
         header #headerLeft #headerLeftBlock #headerLeftTitle h1 {
-          font-size: 3.5rem;
+          font-size: 7vmax;
           font-weight: lighter;
-          font-family: "Alex Brush", cursive; }
+          font-family: "Alex Brush", cursive;
+          text-align: center; }
   header #headerRight {
     width: 40%;
     height: 100%;
@@ -497,6 +499,23 @@ PRODUCT PAGE
             cursor: pointer;
             max-height: 100px;
             max-width: 100px; }
+    #productPage #productPageContent #productAddWishList {
+      text-align: center; }
+      #productPage #productPageContent #productAddWishList button {
+        background-color: #B31212;
+        border: 3px solid white;
+        padding: 15px;
+        position: relative;
+        font-weight: lighter;
+        color: white;
+        transition: all .25s ease;
+        -webkit-transition: all .25s ease; }
+        #productPage #productPageContent #productAddWishList button:hover {
+          border-color: #B31212;
+          color: #B31212;
+          background-color: white; }
+        #productPage #productPageContent #productAddWishList button:focus {
+          outline: 0; }
     #productPage #productPageContent #productPageRight {
       width: 50%;
       display: flex;

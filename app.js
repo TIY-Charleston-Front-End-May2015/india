@@ -55,9 +55,32 @@ var page = {
   });
   ///////////////////////////////////////
 
+  $('body').on('click', '#profileButtonWrapper input', function(event) {
+    event.preventDefault();
+    page.loadProfile();
+    $('#profilePageWrapper').addClass('activePage')
+  })
+
+  $('body').on('click', '#productAddWishList', function(event){
+    event.preventDefault();
+    console.log(this);
+    var productData;
+    var titleEquals = $(this).closest('#productPage').find("#productPageTitle h2").text();
+    console.log("titleEquals:", titleEquals);
+    _.each(products, function(el,idx,arr) {
+      if (el.productTitle === titleEquals) {
+        productData = el;
+      }
+    });
+    console.log(productData);
+    page.loadTemplate("wishListItem", productData, $("#wishList"))
+
+  })
+
       $('#headerRight').on('click', '#logInSubmitButton', function(event) {
       event.preventDefault();
       var $username = $('input[id="logInUsername"]').val()
+      var loadId =
       $('#usernameBox').append($username)
       $('input[id="logInUsername"]').val('')
       $('#logInForm').hide()
@@ -151,6 +174,7 @@ var page = {
       page.deleteItem(deleteId);
     });
 
+
     $('body').on('click','#productContinueShoppingButton', function(e) {
       $('#cartPage').removeClass('activePage');
       $('#productPage').removeClass('activePage');
@@ -227,14 +251,15 @@ var page = {
   },
 
 
-  loadProfile: function() {
+  loadProfile: function(data) {
     $.ajax ({
-      url: page.url,
+      url: page.urlProfile,
       method: 'GET',
+      data: data,
       success: function(data) {
-        // if ($username = username:) {
-        //
-        // }
+        console.log(data);
+        page.addOneProfileToDOM()
+        console.log(loadedProfile);
       },
       error: function(err) {
         console.log("error");
@@ -342,18 +367,10 @@ var page = {
     page.loadTemplate("profilePage", profile, $('#profilePageWrapper'));
   },
 
-  // acctFormSubmission: function() {
-      // var lineValue = $('#loginFormWrapper form input').val();
-      // var submissionArr = []
-      // $('#loginFormWrapper form input').each(function(idx, el, arr){
-      //   submissionArr.push($(el).val());
-      //   $('.textBox').val('')
-      //   submissionArr.splice(7, 2);
-
-
     postProfile: function(newProfile) {
 
       var newProfile = {
+        username: $('#username').val(),
         firstName: $('#firstName').val(),
         lastName: $('#lastName').val(),
         email: $('#email').val(),
@@ -367,7 +384,7 @@ var page = {
         url: page.urlProfile,
         method: 'POST',
         data: newProfile,
-        success: function(data) {  
+        success: function(data) {
           page.addOneProfileToDOM(data);
           $('#profilePageWrapper').addClass('activePage')
           $('#profilePage').addClass('activePage')
@@ -382,7 +399,7 @@ var page = {
 
 
 
-  deleteItem: function(deleteId) {
+  deleteProfile: function(deleteId) {
     $.ajax({
       url: page.urlCart + "/" + deleteId,
       method: 'DELETE',
