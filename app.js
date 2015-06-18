@@ -216,6 +216,23 @@ var page = {
       });
     });
 
+
+    $('body').on('click', '#catalogMuffinsButton', function(e) {
+      e.preventDefault();
+      $('#cartPage').removeClass('activePage');
+      $('#productPage').removeClass('activePage');
+      $('#catalogPage').removeClass('activePage');
+      $('#categoryMuffinPage').addClass('activePage');
+    });
+    //
+    // createMuffinCatalog: function() {
+    //   _.each(products, function(el, idx, arr) {
+    //     if ('category_id' === "Muffins") {
+    //     page.loadTemplate('categoryMuffins', products[idx], $('#catalogPageContent'));
+    //   }
+    //   });
+    // },
+
     $('#productPage').on('submit', '#productReviewsForm', function(e){
       e.preventDefault();
       if ($('#productReviewsFormComment textarea').val().trim().length > 0) {

@@ -680,33 +680,7 @@ PRODUCT PAGE
         }
       }
     }
-
-    #productAddWishList {
-      text-align: center;
-
-      button {
-        background-color: $red;
-        border: 3px solid white;
-        padding: 15px;
-        position: relative;
-        font-weight: lighter;
-        color: white;
-        transition: all .25s ease;
-        -webkit-transition: all .25s ease;
-
-        &:hover {
-          border-color: $red;
-          color: $red;
-          background-color: white;
-
-
-        }
-
-        &:focus {
-          outline: 0;
-        }
-      }
-    }
+    
 
     #productPageRight {
       width: 50%;
